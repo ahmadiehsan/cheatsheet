@@ -1,5 +1,12 @@
 # Leading Tools
 
+### Prerequisites
+
+```
+sudo apt install make
+sudo apt-get install wkhtmltopdf
+```
+
 ### Usage
 
 ```
