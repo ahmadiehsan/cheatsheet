@@ -13,5 +13,8 @@ if __name__ == '__main__':
     actions.sort()
     print('\n'.join(f'\t{a}' for a in actions))
 
-    print('Usage:')
+    print('\nUsage:')
     print('\tpython runner.py <action_name>')
+
+    print('\nHelp about each action:')
+    print('\tpython runner.py <action_name> help')
