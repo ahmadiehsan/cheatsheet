@@ -1,23 +1,5 @@
-<!doctype html>
-<html lang="fa">
+{% extends 'base_email.html' %}
 
-<body>
-<div style="max-width: 600px; margin: auto; direction: rtl; text-align: center;">
-    <table style="background-color: rgb(245,245,245); overflow: hidden; width: 100%; padding: 0 20px 40px;">
-        <tbody>
-        <tr>
-            <td style="text-align: right; padding: 15px 30px;">
-                <img src="https://courses.darsup.org/static/darsup/images/logo.png" width="70" height="30">
-            </td>
-        </tr>
-        <tr>
-            <td style="background-color: #fff;">
-                <img style="width: 100%;" src="cid:certificate_img">
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-</body>
-
-</html>
+{% block content %}
+    <img style="width: 100%;" src="cid:certificate_img">
+{% endblock %}

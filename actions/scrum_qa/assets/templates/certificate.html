@@ -1,97 +1,92 @@
-<!doctype html>
-<html lang="fa">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+{% extends 'base.html' %}
 
-    <link rel="stylesheet" href="../css/fontiran.css"/>
-    <link rel="stylesheet" href="../css/certificate.css"/>
+{% block title %}گزارش عملکرد{% endblock %}
 
-    <title>Document</title>
-</head>
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('css', 'certificate.css') }}"/>
+{% endblock %}
 
-<body class="{{ color }}">
-<div id="art">
-    <svg id="art" xmlns="http://www.w3.org/2000/svg" width="800" height="800"
-         viewBox="0 0 1500 1500">
-        <defs>
-            <!-- Assign space and position for Company Logo -->
-            <clipPath id="clip-path">
-                <rect id="Rectangle_73" class="cls-1" width="300" height="300"/>
-            </clipPath>
-            <linearGradient id="linear-gradient" x1="0.048" y1="0.5" x2="0.963" y2="0.5"
-                            gradientUnits="objectBoundingBox">
-                <stop offset="0" stop-color="#000000"/>
-                <stop offset="1" stop-color="#D4AF37"/>
-            </linearGradient>
-            <clipPath id="clip-path-5">
-                <rect id="Rectangle_79" class="cls-2" width="112" height="109" transform="translate(541 1246)"/>
-            </clipPath>
-            <!-- Assign space and position for signature -->
-            <clipPath id="clip-path-6">
-                <rect id="Rectangle_78" class="cls-2" width="300" height="300"/>
-            </clipPath>
-            <!-- Assign space and position for QR Code-->
-            <clipPath id="clip-path-7">
-                <rect id="Rectangle_77" class="cls-1" width="230.947" height="230.947"/>
-            </clipPath>
-            <!-- Assign space and position for QR Code-->
-            <clipPath id="clip-path-8">
-                <rect id="Rectangle_76" class="cls-1" width="260.462" height="270.788"/>
-            </clipPath>
-            <clipPath id="clip-Artboard_2">
-                <rect width="1500" height="1500"/>
-            </clipPath>
-        </defs>
-        <g id="Artboard_2" class="cls-3">
-            <rect class="cls-29" width="1500" height="1500"/>
-            <g id="left-image" transform="translate(-222.941 79.324)">
-                <path id="left-shape-1" class="cls-4" d="M222.941-79.324h282l-282,986Z"/>
-                <path id="left-shape-2" class="cls-5" d="M504.941,466.676H348.783l-125.842,440v56Z"/>
-                <path id="left-shape-3" class="cls-6" d="M425.7,197.749,348.783,466.676H504.941Z"/>
-            </g>
-            <g id="right-image" transform="translate(1.677 -2.588)">
-                <path id="right-shape-1" class="cls-4" d="M1498.823,101.588l-371.5,1401h371.5Z"/>
-                <path id="right-shape-2" class="cls-6" d="M1241.323,539.588H1382.68l-71.926,271.247Z"/>
-                <path id="right-shape-3" class="cls-5" d="M1498.823,54.588l-257.5,485H1382.68l116.143-438Z"/>
-                <path id="right-shape-4" class="cls-7" d="M1383.823,2.588l-142.5,537,257.5-485v-52Z"/>
-            </g>
-            <text id="ORGANIZATION_NAME" class="cls-17" transform="translate(750 120)">
-                <tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">وضعیت عملکرد</tspan>
-            </text>
-            <g id="Group_302" transform="translate(580 51)">
-                <rect id="Rectangle_74" class="cls-18" width="336" height="96" rx="48" transform="translate(0 150)"/>
-                <text id="PASSED" class="cls-19" transform="translate(170 200)">
-                    <tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">{{ level }}</tspan>
+{% block content %}
+    <div class="{{ color }}" id="art">
+        <svg id="art" xmlns="http://www.w3.org/2000/svg" width="800" height="800"
+             viewBox="0 0 1500 1500">
+            <defs>
+                <!-- Assign space and position for Company Logo -->
+                <clipPath id="clip-path">
+                    <rect id="Rectangle_73" class="cls-1" width="300" height="300"/>
+                </clipPath>
+                <linearGradient id="linear-gradient" x1="0.048" y1="0.5" x2="0.963" y2="0.5"
+                                gradientUnits="objectBoundingBox">
+                    <stop offset="0" stop-color="#000000"/>
+                    <stop offset="1" stop-color="#D4AF37"/>
+                </linearGradient>
+                <clipPath id="clip-path-5">
+                    <rect id="Rectangle_79" class="cls-2" width="112" height="109" transform="translate(541 1246)"/>
+                </clipPath>
+                <!-- Assign space and position for signature -->
+                <clipPath id="clip-path-6">
+                    <rect id="Rectangle_78" class="cls-2" width="300" height="300"/>
+                </clipPath>
+                <!-- Assign space and position for QR Code-->
+                <clipPath id="clip-path-7">
+                    <rect id="Rectangle_77" class="cls-1" width="230.947" height="230.947"/>
+                </clipPath>
+                <!-- Assign space and position for QR Code-->
+                <clipPath id="clip-path-8">
+                    <rect id="Rectangle_76" class="cls-1" width="260.462" height="270.788"/>
+                </clipPath>
+                <clipPath id="clip-Artboard_2">
+                    <rect width="1500" height="1500"/>
+                </clipPath>
+            </defs>
+            <g id="Artboard_2" class="cls-3">
+                <rect class="cls-29" width="1500" height="1500"/>
+                <g id="left-image" transform="translate(-222.941 79.324)">
+                    <path id="left-shape-1" class="cls-4" d="M222.941-79.324h282l-282,986Z"/>
+                    <path id="left-shape-2" class="cls-5" d="M504.941,466.676H348.783l-125.842,440v56Z"/>
+                    <path id="left-shape-3" class="cls-6" d="M425.7,197.749,348.783,466.676H504.941Z"/>
+                </g>
+                <g id="right-image" transform="translate(1.677 -2.588)">
+                    <path id="right-shape-1" class="cls-4" d="M1498.823,101.588l-371.5,1401h371.5Z"/>
+                    <path id="right-shape-2" class="cls-6" d="M1241.323,539.588H1382.68l-71.926,271.247Z"/>
+                    <path id="right-shape-3" class="cls-5" d="M1498.823,54.588l-257.5,485H1382.68l116.143-438Z"/>
+                    <path id="right-shape-4" class="cls-7" d="M1383.823,2.588l-142.5,537,257.5-485v-52Z"/>
+                </g>
+                <text id="ORGANIZATION_NAME" class="cls-17" transform="translate(750 120)">
+                    <tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">وضعیت عملکرد</tspan>
                 </text>
-            </g>
-            <text id="STUDENT_NAME" class="cls-14" transform="translate(750 460)">
-                <tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">جناب آقای {{ full_name }}</tspan>
-            </text>
-            <text id="OF_COMPLETION" class="cls-13" transform="translate(750 550)">
-                <tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">گزارش عملکر شما در {{ sprint_name }}</tspan>
-            </text>
-            <text id="OF_COMPLETION" class="cls-13" transform="translate(750 630)">
-                <tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">به شرح زیر است</tspan>
-            </text>
-
-            {% for detail in detail_rows %}
-                <text id="OF_COMPLETION" class="cls-13" transform="translate(750 {{ loop.index * 80 + 690 }})">
-                    <tspan x="0" y="0" dominant-baseline="middle" text-anchor="end">{{ detail }}</tspan>
-                </text>
-            {% endfor %}
-
-            <g id="Group_300" transform="translate(0 21)">
-                <g id="Group_299" transform="translate(-827 41.5)">
-                    <text id="CERTIFICATE_NUMBER_TEXT" class="cls-20" transform="translate(1044 1352.696)">
-                        <tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">{{ now }}</tspan>
+                <g id="Group_302" transform="translate(580 51)">
+                    <rect id="Rectangle_74" class="cls-18" width="336" height="96" rx="48"
+                          transform="translate(0 150)"/>
+                    <text id="PASSED" class="cls-19" transform="translate(170 200)">
+                        <tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">{{ level }}</tspan>
                     </text>
                 </g>
+                <text id="STUDENT_NAME" class="cls-14" transform="translate(750 460)">
+                    <tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">جناب آقای {{ full_name }}</tspan>
+                </text>
+                <text id="OF_COMPLETION" class="cls-13" transform="translate(750 550)">
+                    <tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">گزارش عملکر شما
+                        در {{ sprint_name }}</tspan>
+                </text>
+                <text id="OF_COMPLETION" class="cls-13" transform="translate(750 630)">
+                    <tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">به شرح زیر است</tspan>
+                </text>
+
+                {% for detail in detail_rows %}
+                    <text id="OF_COMPLETION" class="cls-13" transform="translate(750 {{ loop.index * 80 + 690 }})">
+                        <tspan x="0" y="0" dominant-baseline="middle" text-anchor="end">{{ detail }}</tspan>
+                    </text>
+                {% endfor %}
+
+                <g id="Group_300" transform="translate(0 21)">
+                    <g id="Group_299" transform="translate(-827 41.5)">
+                        <text id="CERTIFICATE_NUMBER_TEXT" class="cls-20" transform="translate(1044 1352.696)">
+                            <tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">{{ now }}</tspan>
+                        </text>
+                    </g>
+                </g>
             </g>
-        </g>
-    </svg>
-</div>
-</body>
-</html>
+        </svg>
+    </div>
+{% endblock %}

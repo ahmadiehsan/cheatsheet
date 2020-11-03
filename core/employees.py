@@ -17,8 +17,8 @@ class Employee:
 class EmployeeManager:
     def __init__(self):
         self.employees = [
-            Employee('علی', 'داود', '1374ea@gmail.com', 'ali_davood'),
-            Employee('میلاد', 'جلالی', '1374ea@gmail.com', 'milad_jalali'),
+            Employee('علی', 'داود', '1374ea@gmail.com', 'ali_davood', False),
+            Employee('میلاد', 'جلالی', '1374ea@gmail.com', 'milad_jalali', False),
             Employee('احسان', 'احمدی', '1374ea@gmail.com', 'milad_jalali'),
         ]
 

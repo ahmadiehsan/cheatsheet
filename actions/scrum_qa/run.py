@@ -2,30 +2,32 @@ import os
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from getpass import getpass
 
 import imgkit
 import xlrd
 from jdatetime import datetime
-from jinja2 import Template
 
-from helpers.config import EMAIL
-from helpers.employees import EMPLOYEES
-from helpers.utils import asset, results, send_email
+from core.config import EMAIL
+from core.employees import EMPLOYEES
+from core.helpers import asset, result, send_email, resource, jinja2_env
 
 color_map = {
     'ضعیف': 'red',
+    'نیازمند تلاش بیشتر': 'red',
     'در حد انتظار': 'green',
+    'خوب': 'green',
     'عالی': 'golden',
 }
 
 if __name__ == '__main__':
-    password = input(f'Password for {EMAIL["USERNAME"]} smtp: ')
+    password = getpass(f'Password for {EMAIL["USERNAME"]} smtp: ')
 
     for employee in EMPLOYEES.actives():
         now = datetime.now()
 
         # get employee data resource
-        workbook = xlrd.open_workbook(results(employee.username, 'resource.xlsx'))
+        workbook = xlrd.open_workbook(resource(employee.username, 'qa_report.xlsx'))
         sheet = workbook.sheet_by_index(0)
 
         # read from sheet
@@ -38,12 +40,14 @@ if __name__ == '__main__':
             value = sheet.cell_value(row_index, last_col_index)
             detail_rows.append(f'{key} {value}')
 
+        # make jinja2 ready
+        templates_env = jinja2_env()
+
         # generate certificate image
-        with open(asset('templates', 'certificate.html'), 'r') as certificate_file:
-            certificate = Template(certificate_file.read())
+        certificate_template = templates_env.get_template('certificate.html')
 
         with open(asset('templates', 'temp.html'), 'w') as temp_file:
-            temp_file.write(certificate.render(
+            temp_file.write(certificate_template.render(
                 color=color_map[sheet.cell_value(1, last_col_index)],
                 full_name=employee.full_name,
                 level=sheet.cell_value(1, last_col_index),
@@ -55,7 +59,7 @@ if __name__ == '__main__':
         image_file_name = f'{now.strftime("%Y_%B_%d")}.jpg'
         imgkit.from_file(
             asset('templates', 'temp.html'),
-            results(employee.username, image_file_name),
+            result(employee.username, image_file_name),
             options={'encoding': "UTF-8", 'width': 800, 'quality': 100}
         )
 
@@ -67,11 +71,11 @@ if __name__ == '__main__':
         message['From'] = EMAIL['SENDER']
         message['To'] = employee.email
 
-        with open(asset('templates', 'email.html'), 'r') as html_file:
-            message_text = MIMEText(html_file.read(), 'html')
-            message.attach(message_text)
+        email_template = templates_env.get_template('email.html')
+        message_text = MIMEText(email_template.render(), 'html')
+        message.attach(message_text)
 
-        with open(results(employee.username, image_file_name), 'rb') as img_file:
+        with open(result(employee.username, image_file_name), 'rb') as img_file:
             message_image = MIMEImage(img_file.read())
             message_image.add_header('Content-ID', '<certificate_img>')
             message.attach(message_image)

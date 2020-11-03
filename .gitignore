@@ -1,5 +1,8 @@
-### Example user template
+### This project
+temp.*
 
+
+### IDE template
 # IntelliJ project files
 .idea
 *.iml
