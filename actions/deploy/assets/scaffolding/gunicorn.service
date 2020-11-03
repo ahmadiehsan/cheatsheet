@@ -1,0 +1,18 @@
+[Unit]
+Description=<project name>
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=<unix user>
+Group=www-data
+WorkingDirectory=<project absolute path>
+ExecStart=<project venv absolute path>/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/<project name>.sock \
+          <project name>.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+

@@ -7,7 +7,8 @@ help_data = {
         
         <project>
         ├── app
-        │   └── <root of project content>
+        │   ├── under-construction
+        │   └── <and root of other project content>
         ├── etc
         │   └── nginx
         │       └── sites-available
