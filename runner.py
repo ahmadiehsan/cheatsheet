@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import os
 import subprocess
 import sys
@@ -15,7 +17,12 @@ def check_path(path, message):
 if __name__ == '__main__':
     command_args = clean_command_args(sys.argv)
 
-    action_name = command_args.pop(0)
+    try:
+        action_name = command_args.pop(0)
+    except IndexError:
+        print('Invalid call')
+        sys.exit()
+
     action_dir = os.path.join(ACTIONS_DIR, action_name)
     check_path(action_dir, 'Invalid action')
 
