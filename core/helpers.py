@@ -1,19 +1,18 @@
-import inspect
 import os
 import smtplib
 import ssl
-from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
 
-from jinja2 import Environment, select_autoescape, ChoiceLoader, FileSystemLoader
+from jinja2 import Environment, select_autoescape, FileSystemLoader
 
 from core.config import EMAIL, BASE_DIR
 
 
-def send_email(smtp_password, receiver_email, message: MIMEMultipart):
+def send_email(smtp_password, receiver_emails, message: MIMEBase):
     context = ssl.create_default_context()
     with smtplib.SMTP_SSL(EMAIL['SMTP_SERVER'], EMAIL['PORT'], context=context) as server:
         server.login(EMAIL['USERNAME'], smtp_password)
-        server.sendmail(EMAIL['SENDER'], receiver_email, message.as_string())
+        server.sendmail(EMAIL['SENDER'], receiver_emails, message.as_string())
 
 
 def asset(*args, **kwargs):
@@ -39,12 +38,11 @@ def result(*args):
 
 def jinja2_env():
     env = Environment(
-        loader=ChoiceLoader([
-            FileSystemLoader(asset('templates')),
-            FileSystemLoader(asset('templates', from_core=True))
+        loader=FileSystemLoader([
+            asset('templates'),
+            asset('templates', from_core=True)
         ]),
         autoescape=select_autoescape(['html', 'xml'])
     )
-    env.globals.update(asset=asset)
-
+    env.globals['asset'] = asset
     return env

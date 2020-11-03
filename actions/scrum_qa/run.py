@@ -69,10 +69,10 @@ if __name__ == '__main__':
         message = MIMEMultipart('alternative')
         message['Subject'] = 'گزارش عملکرد شما در' + ' ' + last_sprint_name
         message['From'] = EMAIL['SENDER']
-        message['To'] = employee.email
+        message['To'] = ', '.join(employee.emails)
 
         email_template = templates_env.get_template('email.html')
-        message_text = MIMEText(email_template.render(), 'html')
+        message_text = MIMEText(email_template.render(sprint_name=last_sprint_name), 'html')
         message.attach(message_text)
 
         with open(result(employee.username, image_file_name), 'rb') as img_file:
@@ -80,4 +80,4 @@ if __name__ == '__main__':
             message_image.add_header('Content-ID', '<certificate_img>')
             message.attach(message_image)
 
-        send_email(password, employee.email, message)
+        send_email(password, employee.emails, message)

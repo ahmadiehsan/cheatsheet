@@ -1,8 +1,8 @@
 class Employee:
-    def __init__(self, first_name, last_name, email, username, is_active=True):
+    def __init__(self, first_name, last_name, emails, username, is_active=True):
         self.first_name = first_name
         self.last_name = last_name
-        self.email = email
+        self.emails = emails
         self.username = username
         self.is_active = is_active
 
@@ -17,9 +17,9 @@ class Employee:
 class EmployeeManager:
     def __init__(self):
         self.employees = [
-            Employee('علی', 'داود', '1374ea@gmail.com', 'ali_davood', False),
-            Employee('میلاد', 'جلالی', '1374ea@gmail.com', 'milad_jalali', False),
-            Employee('احسان', 'احمدی', '1374ea@gmail.com', 'milad_jalali'),
+            Employee('علی', 'داود', ['alidavood.it@gmail.com'], 'ali_davood', False),
+            Employee('میلاد', 'جلالی', ['milad.jalali@gmail.com'], 'milad_jalali', False),
+            Employee('احسان', 'احمدی', ['1374ea@gmail.com'], 'ehsan_ahmadi'),
         ]
 
     def all(self):
