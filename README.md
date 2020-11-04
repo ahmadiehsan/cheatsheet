@@ -2,10 +2,17 @@
 
 ### Prerequisites
 
-```
-sudo apt install make
-sudo apt-get install wkhtmltopdf
-```
+1. `sudo apt install make` for below actions:
+
+    - deploy
+    - docker
+    - elasticsearch
+    - kubernetes
+    - postgres
+    - python
+
+2. `sudo apt-get install wkhtmltopdf` for scrum qa action
+3. `sudo apt install xclip` for scrum points action
 
 ### Usage
 
