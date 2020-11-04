@@ -9,3 +9,8 @@ EMAIL = {
     'USERNAME': 'ehsanahmadi1374@gmail.com',
     'SENDER': 'ehsanahmadi1374@gmail.com',
 }
+
+ROCKET_CHAT = {
+    'API_URL': 'https://chat.mparsict.com/api/v1/',
+    'USER_ID': 'oEzJbP4LP5jMktE3Y'
+}

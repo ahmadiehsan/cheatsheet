@@ -1,9 +1,18 @@
 class Employee:
-    def __init__(self, first_name, last_name, emails, username, is_active=True):
+    def __init__(
+            self,
+            first_name,
+            last_name,
+            username,
+            emails,
+            rocket_chat_room_id,
+            is_active=True
+    ):
         self.first_name = first_name
         self.last_name = last_name
-        self.emails = emails
         self.username = username
+        self.emails = emails
+        self.rocket_chat_room_id = rocket_chat_room_id
         self.is_active = is_active
 
     @property
@@ -17,9 +26,29 @@ class Employee:
 class EmployeeManager:
     def __init__(self):
         self.employees = [
-            Employee('علی', 'داود', ['alidavood.it@gmail.com'], 'ali_davood', False),
-            Employee('میلاد', 'جلالی', ['milad.jalali@gmail.com'], 'milad_jalali', False),
-            Employee('احسان', 'احمدی', ['1374ea@gmail.com'], 'ehsan_ahmadi'),
+            Employee(
+                'علی',
+                'داود',
+                'ali_davood',
+                ['alidavood.it@gmail.com'],
+                'oEzJbP4LP5jMktE3YxEao9bLuzxWERXRAN',
+                False
+            ),
+            Employee(
+                'میلاد',
+                'جلالی',
+                'milad_jalali',
+                ['milad.jalali@gmail.com'],
+                'WoXLXG5Xd3vnkWDf2oEzJbP4LP5jMktE3Y',
+                False
+            ),
+            Employee(
+                'احسان',
+                'احمدی',
+                'ehsan_ahmadi',
+                ['1374ea@gmail.com'],
+                'oEzJbP4LP5jMktE3YoEzJbP4LP5jMktE3Y'
+            ),
         ]
 
     def all(self):

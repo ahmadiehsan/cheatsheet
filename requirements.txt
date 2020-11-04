@@ -4,13 +4,18 @@
 #
 #    pip-compile
 #
+certifi==2020.6.20        # via requests
+chardet==3.0.4            # via requests
 click==7.1.2              # via pip-tools
+idna==2.10                # via requests
 imgkit==1.0.2             # via -r requirements.in
 jdatetime==3.6.2          # via -r requirements.in
 jinja2==2.11.2            # via -r requirements.in
 markupsafe==1.1.1         # via jinja2
 pip-tools==5.3.1          # via -r requirements.in
+requests==2.24.0          # via -r requirements.in
 six==1.15.0               # via pip-tools
+urllib3==1.25.11          # via requests
 xlrd==1.2.0               # via -r requirements.in
 
 # The following packages are considered to be unsafe in a requirements file:

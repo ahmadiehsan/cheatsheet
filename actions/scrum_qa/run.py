@@ -5,10 +5,11 @@ from email.mime.text import MIMEText
 from getpass import getpass
 
 import imgkit
+import requests
 import xlrd
 from jdatetime import datetime
 
-from core.config import EMAIL
+from core.config import EMAIL, ROCKET_CHAT
 from core.employees import EMPLOYEES
 from core.helpers import asset, result, send_email, resource, jinja2_env
 
@@ -22,6 +23,7 @@ color_map = {
 
 if __name__ == '__main__':
     password = getpass(f'Password for {EMAIL["USERNAME"]} smtp: ')
+    rocket_chat_token = getpass(f'Token for {ROCKET_CHAT["USER_ID"]}: ')
 
     for employee in EMPLOYEES.actives():
         now = datetime.now()
@@ -65,6 +67,10 @@ if __name__ == '__main__':
 
         os.remove(asset('templates', 'temp.html'))
 
+        # read generated certificate file
+        with open(result(employee.username, image_file_name), 'rb') as img_file:
+            certificate_image = img_file.read()
+
         # send email
         message = MIMEMultipart('alternative')
         message['Subject'] = 'گزارش عملکرد شما در' + ' ' + last_sprint_name
@@ -75,9 +81,32 @@ if __name__ == '__main__':
         message_text = MIMEText(email_template.render(sprint_name=last_sprint_name), 'html')
         message.attach(message_text)
 
-        with open(result(employee.username, image_file_name), 'rb') as img_file:
-            message_image = MIMEImage(img_file.read())
-            message_image.add_header('Content-ID', '<certificate_img>')
-            message.attach(message_image)
+        message_image = MIMEImage(certificate_image)
+        message_image.add_header('Content-ID', '<certificate_img>')
+        message.attach(message_image)
 
         send_email(password, employee.emails, message)
+
+        # send message to rocket-chat
+        requests.post(
+            ROCKET_CHAT['API_URL'] + 'chat.sendMessage',
+            headers={
+                'X-Auth-Token': rocket_chat_token,
+                'X-User-Id': ROCKET_CHAT['USER_ID']
+            },
+            json={
+                'message': {
+                    'rid': employee.rocket_chat_room_id,
+                    'msg': 'با تشکر و قدردانی از تلاش‌های شما برای بهبود عملکرد تیم، عملکرد شخصی شما در اسپرینت گذشته '
+                           'به صورت زیر ارزیابی شده است، با کمال میل پذیرای هر گونه بازخورد از سمت شما هستم.'
+                }
+            }
+        )
+        requests.post(
+            ROCKET_CHAT['API_URL'] + 'rooms.upload/' + employee.rocket_chat_room_id,
+            headers={
+                'X-Auth-Token': rocket_chat_token,
+                'X-User-Id': ROCKET_CHAT['USER_ID']
+            },
+            files={'file': (image_file_name, certificate_image, 'image/jpg')}
+        )
