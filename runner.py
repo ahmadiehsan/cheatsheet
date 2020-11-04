@@ -8,10 +8,15 @@ from core.config import ACTIONS_DIR, BASE_DIR
 from core.helpers import clean_command_args
 
 
-def check_path(path, message):
+def check_path(path, message='Path is not exist', terminate=True):
     if not os.path.exists(path):
+        if not terminate:
+            return False
+
         print(message)
         sys.exit()
+
+    return True
 
 
 if __name__ == '__main__':
@@ -24,21 +29,23 @@ if __name__ == '__main__':
         sys.exit()
 
     action_dir = os.path.join(ACTIONS_DIR, action_name)
-    check_path(action_dir, 'Invalid action')
+    check_path(action_dir, message='Invalid action')
 
     os.environ['PYTHONPATH'] = BASE_DIR
     os.environ['RUNNING_ACTION_DIR'] = action_dir
 
     if 'help' in command_args:
-        del command_args[0]
-        runner = os.path.join(action_dir, 'help.py')
-        check_path(runner, 'Action not contain help command')
+        run = os.path.join(action_dir, 'help.py')
+        check_path(run, message='Action not contain help command')
     else:
-        runner = os.path.join(action_dir, 'run.py')
-        check_path(runner, 'Invalid command')
+        run = os.path.join(action_dir, 'run.py')
+
+        if not check_path(run, terminate=False):
+            run = os.path.join(action_dir, f'{command_args[0]}.py')
+            check_path(run, message='Invalid command')
 
     try:
-        subprocess.run(['python', runner, *command_args])
+        subprocess.run(['python', run, *command_args])
     except KeyboardInterrupt:
         print('Process interrupted by user')
     except:

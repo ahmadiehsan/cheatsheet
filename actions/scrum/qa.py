@@ -21,6 +21,7 @@ color_map = {
     'عالی': 'golden',
 }
 
+
 if __name__ == '__main__':
     password = getpass(f'Password for {EMAIL["USERNAME"]} smtp: ')
     rocket_chat_token = getpass(f'Token for {ROCKET_CHAT["USER_ID"]}: ')
