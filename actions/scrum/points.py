@@ -25,7 +25,7 @@ def calc_review_points(points):
     return round(points * 0.35)
 
 
-def calc_documentation_points(points):
+def calc_document_points(points):
     need_doc = input('Need to write a document? [N]o/[y]es ') or 'n'
 
     if need_doc.lower() == 'n':
@@ -40,11 +40,11 @@ def calc_documentation_points(points):
 
 
 if __name__ == '__main__':
-    task_points = int(input('Please enter your basic points estimation: '))
+    task_points = int(input('Task estimated points: '))
     analyse_points = calc_analyse_points(task_points)
     test_points = calc_test_points(task_points)
     review_points = calc_review_points(task_points)
-    documentation_points = calc_documentation_points(task_points)
+    document_points = calc_document_points(task_points)
 
     output = f"""
     =========================
@@ -52,9 +52,9 @@ if __name__ == '__main__':
     Analyse Points:\t {analyse_points}
     Test Points:\t {test_points}
     Review Points:\t {review_points}
-    Document Points:\t {documentation_points}
+    Document Points:\t {document_points}
     -------------------------
-    Total Points:\t {task_points + analyse_points + test_points + review_points + documentation_points}
+    Total Points:\t {task_points + analyse_points + test_points + review_points + document_points}
     =========================
     """
 
