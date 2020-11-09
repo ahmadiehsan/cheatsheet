@@ -4,21 +4,30 @@ import pyperclip
 
 
 def calc_analyse_points(points):
-    return round(points * 0.15)
+    result_points = round(points * 0.15)
+    if result_points == 0:
+        return 1
+
+    return result_points
 
 
 def calc_test_points(points):
-    test_type = input('Writing test difficulty? [h]igh/[L]ow ') or 'l'
-
-    if test_type.lower() == 'l':
-        percentage = 0.25
-    elif test_type.lower() == 'h':
-        percentage = 0.40
+    has_test = input('Has test? [Y]es/[n]o ') or 'y'
+    if has_test == 'n':
+        return 0
+    elif has_test == 'y':
+        test_type = input('Writing test difficulty? [h]igh/[L]ow ') or 'l'
+        if test_type.lower() == 'l':
+            percentage = 0.25
+        elif test_type.lower() == 'h':
+            percentage = 0.40
+        else:
+            print('Invalid choice')
+            sys.exit()
+        return round(points * percentage)
     else:
         print('Invalid choice')
         sys.exit()
-
-    return round(points * percentage)
 
 
 def calc_review_points(points):

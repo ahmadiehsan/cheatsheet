@@ -30,17 +30,15 @@ class EmployeeManager:
                 'علی',
                 'داود',
                 'ali_davood',
-                ['alidavood.it@gmail.com'],
-                'oEzJbP4LP5jMktE3YxEao9bLuzxWERXRAN',
-                False
+                ['alidavood.it@gmail.com', 'mehrepars.ali@gmail.com'],
+                'oEzJbP4LP5jMktE3YxEao9bLuzxWERXRAN'
             ),
             Employee(
                 'میلاد',
                 'جلالی',
                 'milad_jalali',
-                ['milad.jalali@gmail.com'],
-                'WoXLXG5Xd3vnkWDf2oEzJbP4LP5jMktE3Y',
-                False
+                ['miladjalali9472@gmail.com'],
+                'WoXLXG5Xd3vnkWDf2oEzJbP4LP5jMktE3Y'
             ),
             Employee(
                 'احسان',
