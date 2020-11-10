@@ -31,7 +31,17 @@ def calc_test_points(points):
 
 
 def calc_review_points(points):
-    return round(points * 0.35)
+    need_review = input('Need to review? [Y]es/[n]o ') or 'y'
+
+    if need_review.lower() == 'n':
+        percentage = 0
+    elif need_review.lower() == 'y':
+        percentage = 0.35
+    else:
+        print('Invalid choice')
+        sys.exit()
+
+    return round(points * percentage)
 
 
 def calc_document_points(points):
