@@ -7,7 +7,6 @@ def calc_analyse_points(points):
     result_points = round(points * 0.15)
     if result_points == 0:
         return 1
-
     return result_points
 
 
@@ -24,7 +23,11 @@ def calc_test_points(points):
         else:
             print('Invalid choice')
             sys.exit()
-        return round(points * percentage)
+
+        result_points = round(points * percentage)
+        if result_points == 0:
+            return 1
+        return result_points
     else:
         print('Invalid choice')
         sys.exit()
@@ -41,7 +44,10 @@ def calc_review_points(points):
         print('Invalid choice')
         sys.exit()
 
-    return round(points * percentage)
+    result_points = round(points * percentage)
+    if result_points == 0:
+        return 1
+    return result_points
 
 
 def calc_document_points(points):
@@ -54,8 +60,10 @@ def calc_document_points(points):
     else:
         print('Invalid choice')
         sys.exit()
-
-    return round(points * percentage)
+    result_points = round(points * percentage)
+    if result_points == 0:
+        return 1
+    return result_points
 
 
 if __name__ == '__main__':
