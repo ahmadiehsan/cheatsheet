@@ -37,7 +37,7 @@ def calc_review_points(points):
     need_review = input('Need to review? [Y]es/[n]o ') or 'y'
 
     if need_review.lower() == 'n':
-        percentage = 0
+        return 0
     elif need_review.lower() == 'y':
         percentage = 0.35
     else:
@@ -54,7 +54,7 @@ def calc_document_points(points):
     need_doc = input('Need to write a document? [N]o/[y]es ') or 'n'
 
     if need_doc.lower() == 'n':
-        percentage = 0
+        return 0
     elif need_doc.lower() == 'y':
         percentage = 0.10
     else:
