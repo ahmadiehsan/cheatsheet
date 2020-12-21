@@ -33,3 +33,6 @@ scaffolding:
 
 	# create help file for newcomers
 	cd ~; printf '# $(project) project\n\nproject and all of the project related content is in /$(project)\n\ncd /$(project)\n' >> README.md
+	
+	# done!
+	echo "done!"
