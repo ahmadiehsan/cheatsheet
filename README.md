@@ -18,7 +18,8 @@
 
 ```
 git clone <this repo>
-cd leading-tools
+cd cheatsheet
+sudo pip3 install cheatsheet
 virtualenv -p python3 venv
 source venv/bin/activate
 pip install -r requirements.txt
