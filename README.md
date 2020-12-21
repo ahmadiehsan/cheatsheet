@@ -19,7 +19,7 @@
 ```
 git clone <this repo>
 cd cheatsheet
-sudo pip3 install cheatsheet
+sudo pip3 install virtualenv
 virtualenv -p python3 venv
 source venv/bin/activate
 pip install -r requirements.txt
