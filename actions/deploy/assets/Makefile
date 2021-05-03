@@ -28,6 +28,7 @@ scaffolding:
 	echo "alias cd.nginx='cd /$(project)/etc/nginx/sites-available'" >> /home/$(USER)/.bashrc
 	echo "alias cd.log='cd /$(project)/var/log'" >> /home/$(USER)/.bashrc
 	echo "alias cd.system='cd /$(project)/etc/systemd/system'" >> /home/$(USER)/.bashrc
+	echo "alias cd.etc='cd /$(project)/etc'" >> /home/$(USER)/.bashrc
 	echo "alias ll='ls -l'" >> /home/$(USER)/.bashrc
 	echo "alias la='ls -la'" >> /home/$(USER)/.bashrc
 
