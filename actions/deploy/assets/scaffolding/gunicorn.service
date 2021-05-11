@@ -8,10 +8,11 @@ User=<unix user>
 Group=www-data
 WorkingDirectory=<project absolute path>
 ExecStart=<project venv absolute path>/bin/gunicorn \
-          --access-logfile - \
+          --access-logfile '-' \
           --workers 3 \
           --bind unix:/run/<project name>.sock \
-          <project name>.wsgi:application
+          --log-level debug \
+          <project main app>.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
