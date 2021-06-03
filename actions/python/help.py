@@ -4,7 +4,7 @@ help_data = {
     'install': {
         'description': 'install python on machine',
         'args': {
-            'version': '3.5, ~~3~~, ~~2~~'
+            'version': '3.9, 3.5'
         }
     },
     'virtualenv': {
